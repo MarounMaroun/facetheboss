@@ -1,4 +1,5 @@
 import sys
+import getpass
 import requests
 from colorclass import Color
 from bs4 import BeautifulSoup
@@ -15,8 +16,8 @@ class Faceboss:
         self.session = requests.Session()
         self.browser = Browser()
 
-    def login(self):
-        self.browser.login(self.URL)
+    def login(self, email, password):
+        self.browser.login(self.URL, email, password)
 
         response = self.browser.get_response()
         if 'Create a Post' not in response:
@@ -57,7 +58,9 @@ class Faceboss:
 def main():
     fb = Faceboss()
     if not fb.browser.has_cookies():
-        fb.login()
+        email = raw_input(Color('{autocyan}Please enter your email: {/autocyan}'))
+        password = getpass.getpass(Color('{autocyan}Please enter your password: {/autocyan}'))
+        fb.login(email, password)
 
     print fb.get_notifications_table()
 

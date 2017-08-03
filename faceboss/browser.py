@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-import getpass
 import os.path
 
 import mechanize
-from colorclass import Color
 
 
 class Browser:
@@ -22,13 +20,11 @@ class Browser:
         self.br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) '
                                              'Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
 
-    def login(self, url):
+    def login(self, url, email, password):
         self.br.open(url)
         self.br.select_form(nr=0)
 
-        email = raw_input(Color('{autocyan}Please enter your email: {/autocyan}'))
         self.br.form['email'] = email
-        password = getpass.getpass(Color('{autocyan}Please enter your password: {/autocyan}'))
         self.br.form['pass'] = password
         self.br.submit()
 
