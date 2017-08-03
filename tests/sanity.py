@@ -1,3 +1,4 @@
+import uuid
 import unittest
 
 from faceboss.faceboss import Faceboss
@@ -13,7 +14,11 @@ class BaseTest(unittest.TestCase):
         """
         faceboss = Faceboss()
         with self.assertRaises(SystemExit):
-            faceboss.login('fakemail', 'fakepass')
+            faceboss.login(BaseTest._get_random_str(), BaseTest._get_random_str())
+
+    @staticmethod
+    def _get_random_str():
+        return str(uuid.uuid4().get_hex().upper()[:8])
 
 if __name__ == '__main__':
     unittest.main()

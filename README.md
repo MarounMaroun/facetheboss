@@ -1,7 +1,4 @@
-[![Build Status](https://travis-ci.org/MarounMaroun/facetheboss.svg?branch=master)](https://travis-ci.org/MarounMaroun/facetheboss)
-
-
-# facetheboss
+# facetheboss [![Build Status](https://travis-ci.org/MarounMaroun/facetheboss.svg?branch=master)](https://travis-ci.org/MarounMaroun/facetheboss)
 
 A shell tool that allows you checking your Facebook notifications
 without leaving your shell.
