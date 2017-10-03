@@ -1,6 +1,8 @@
 import sys
+
 import getpass
 import requests
+from halo import Halo
 from colorclass import Color
 from bs4 import BeautifulSoup
 from terminaltables import AsciiTable
@@ -18,6 +20,9 @@ class Faceboss:
         self.browser = Browser()
 
     def login(self, email, password):
+        spinner = Halo({'text': 'Logging in', 'spinner': 'dots'})
+        spinner.start()
+
         self.browser.login(self.URL, email, password)
 
         response = self.browser.get_response()
@@ -26,10 +31,11 @@ class Faceboss:
             self.browser.submit_verification_code(self.CHECKPOINT, code)
             self.browser.save_browser(self.CHECKPOINT)
         elif 'Create a Post' not in response:
-            print Color('{autored}Wrong credentials, please verify{/autored}')
+            spinner.fail('Wrong credentials, please verify')
             sys.exit()
 
         self.browser.set_cookies()
+        spinner.succeed('Successfully logged in')
 
     def get_notifications_table(self):
 
