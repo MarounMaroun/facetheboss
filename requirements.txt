@@ -3,6 +3,6 @@ colorclass==2.2.0
 html5lib==0.999999999
 importlib==1.0.4
 mechanize==0.3.1
-requests==2.13.0
+requests==2.20.0
 terminaltables==3.1.0
 webencodings==0.5.1
