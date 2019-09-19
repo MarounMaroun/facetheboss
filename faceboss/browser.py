@@ -28,6 +28,19 @@ class Browser:
         self.br.form['pass'] = password
         self.br.submit()
 
+    def submit_verification_code(self, url, code):
+        import ipdb; ipdb.set_trace()
+        self.br.open(url)
+        self.br.select_form(nr=0)
+
+        self.br.form['approvals_code'] = code
+        self.br.submit()
+
+    def save_browser(self, url):
+        self.br.open(url)
+        self.br.select_form(nr=0)
+        self.br.submit()
+
     def get_response(self):
         return self.br.response().read()
 

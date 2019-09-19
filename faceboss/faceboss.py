@@ -11,6 +11,7 @@ from browser import Browser
 class Faceboss:
 
     URL = 'https://en-gb.facebook.com/'
+    CHECKPOINT = 'https://en-gb.facebook.com/checkpoint/'
 
     def __init__(self):
         self.session = requests.Session()
@@ -20,7 +21,11 @@ class Faceboss:
         self.browser.login(self.URL, email, password)
 
         response = self.browser.get_response()
-        if 'Create a Post' not in response:
+        if 'Two-Factor Authentication' in response:
+            code = raw_input(Color('{autocyan}Please enter verification code: {/autocyan}'))
+            self.browser.submit_verification_code(self.CHECKPOINT, code)
+            self.browser.save_browser(self.CHECKPOINT)
+        elif 'Create a Post' not in response:
             print Color('{autored}Wrong credentials, please verify{/autored}')
             sys.exit()
 
